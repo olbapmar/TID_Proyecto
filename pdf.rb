@@ -1,6 +1,3 @@
-#!/usr/bin/env ruby
-
-# Execution: ./pdf.rb [name of the file to be parsed]
 require 'pdf/reader' # gem install pdf-reader
 require './dato'
 
@@ -34,15 +31,20 @@ def parse_matrix(string_matrix)
 			datos.push(Dato.new(week_days[i - 1], months[i - 1], hour, tipos[i - 1], line_tokens[i].gsub(/\./,'').to_i))
 		end
 	end
-	puts datos
+	datos
 end
 
-matrix_regex = /(Lunes|Martes|Miércoles|Jueves|Viernes|Sábado|Domingo).*?(?=Total)/m
-ARGV.each do |arg|
-	matrix = PDF::Reader.open(arg) do |reader|
-		txt = reader.pages[0].text
-		matrix = matrix_regex.match(txt).to_s.gsub(/^\s*$\n?/,'')
-		matrix
+def analyze_pdf(names)
+	puts names
+	datos = []
+	matrix_regex = /(Lunes|Martes|Miércoles|Jueves|Viernes|Sábado|Domingo).*?(?=Total)/m
+	names.each do |arg|
+		matrix = PDF::Reader.open(arg) do |reader|
+			txt = reader.pages[0].text
+			matrix = matrix_regex.match(txt).to_s.gsub(/^\s*$\n?/,'')
+			matrix
+		end
+		datos.concat(parse_matrix(matrix))
 	end
-	parse_matrix(matrix)
+	datos
 end
