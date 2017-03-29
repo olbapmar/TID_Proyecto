@@ -19,19 +19,25 @@ def parse_matrix(string_matrix)
 		month_i = month[0].to_i
 		month_names[month_i - 1]
 	end
-	tipos = string_matrix.lines[2].scan(/(?<=\()[[:word:]]+(?=\))/u)
 	
-	(3..string_matrix.lines.size - 1).each do |line_number|
+	string_matrix = /Hora.*/m.match(string_matrix).to_s
+	
+	tipos = string_matrix.lines[0].scan(/(?<=\()[[:word:]]+(?=\))/u)
+	
+	(1..24).each do |line_number|
 		line_tokens = string_matrix.lines[line_number].strip.split(/\s+/)
 		hour = line_tokens[0]
+		puts string_matrix.lines[line_number]
 	end
 end
 
-matrix_regex = /(?<=Carril\/es:).*?(?=Total)/m
+matrix_regex = /(Lunes|Martes|Miércoles|Jueves|Viernes|Sábado|Domingo).*?(?=Total)/m
 ARGV.each do |arg|
 	matrix = PDF::Reader.open(arg) do |reader|
 		txt = reader.pages[0].text
 		matrix = matrix_regex.match(txt).to_s.gsub(/^\s*$\n?/,'')
+		matrix
 	end
 	parse_matrix(matrix)
+	puts "==============="
 end
