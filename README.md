@@ -2,6 +2,13 @@
 
 ## Tratamiento Inteligente de datos
 
-## Pablo Pastor Martín
-## Isaac Aimán Salas
-## Javier Ramos Fernández
+## Miembros
+
+* Pablo Pastor Martín
+* Isaac Aimán Salas
+* Javier Ramos Fernández
+
+### Uso
+
+`./arff_gen.rb [nameOfOutputFile] [relationName] [inputFiles...]`
+
