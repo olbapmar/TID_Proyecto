@@ -9,6 +9,6 @@ class Dato
     end
 
     def to_s
-        "#{@dia},#{@mes},#{@hora},#{@tipo},#{@cantidad},#{@lluvia}"
+        "#{@dia},#{@mes},#{@hora},#{@tipo},#{@lluvia},#{@cantidad}"
     end
 end

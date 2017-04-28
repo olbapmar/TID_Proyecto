@@ -7,8 +7,8 @@ File.open(ARGV[0], "w") do |file|
     file.write("@attribute mes {Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre}\n")
     file.write("@attribute hora numeric\n")
     file.write("@attribute tipo {Laboral,Festivo,Víspera}\n")
-    file.write("@attribute cantidad numeric\n")
     file.write("@attribute lluvia {si, no}\n")
+    file.write("@attribute cantidad numeric\n")
     ARGV.shift(2)
     file.write("\n@data\n\n#{analyze_pdf(ARGV).join("\n")}")
 end
