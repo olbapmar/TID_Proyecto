@@ -1,6 +1,6 @@
 require 'pdf/reader' # gem install pdf-reader
-require './dato'
-require './lluvia'
+require_relative 'dato'
+require_relative './lluvia'
 
 def parse_matrix(string_matrix)
 	datos = []
@@ -37,11 +37,11 @@ def parse_matrix(string_matrix)
 end
 
 def analyze_pdf(names)
-	puts names
 	datos = []
 	matrix_regex = /(Lunes|Martes|Miércoles|Jueves|Viernes|Sábado|Domingo).*?(?=Total)/m
 	contador = 0
 	names.each do |arg|
+		puts arg
 		matrix = PDF::Reader.open(arg) do |reader|
 			txt = reader.pages[0].text
 			matrix = matrix_regex.match(txt).to_s.gsub(/^\s*$\n?/,'')

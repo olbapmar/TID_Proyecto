@@ -37,7 +37,7 @@ def get_rain(date1, date2)
       dataEstacion = JSON response.read_body
 
       (0..(dataEstacion.size - 1)).each do |i|
-        if (dataEstacion[i]["prec"].sub(',', '.').to_f == 0.0)
+        if (dataEstacion[i]["prec"].sub(',', '.').to_f < 48.0)
           outputArray << "no"
         else
           outputArray << "si"
@@ -45,7 +45,7 @@ def get_rain(date1, date2)
       end
     else
       puts "Too many requests. Trying again"
-      sleep(5)
+      sleep(7)
       no_error = true
     end
 
