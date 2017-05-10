@@ -3,7 +3,6 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.trees.J48;
-import weka.classifiers.trees.RandomTree;
 import weka.classifiers.Evaluation;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,7 +16,10 @@ public class Main {
 			 data.setClassIndex(data.numAttributes() - 1);
 		 }
 		      
-		 RandomTree tree = new RandomTree();     
+		 String[] options = new String[1];	 
+ 		 options[0] = "-U";
+ 		 J48 tree = new J48();
+		 tree.setOptions(options);    
 		 
 		 tree.buildClassifier(data);
 		 
