@@ -1,8 +1,0 @@
-@relation caca
-
-@attribute dia {Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo}
-@attribute mes {Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre}
-@attribute hora numeric
-@attribute tipo {Laboral,Festivo,Víspera}
-@attribute cantidad numeric
-@attribute lluvia {si, no}
